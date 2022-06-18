@@ -7,4 +7,5 @@
     <string name="stock_edit_fragment_label">Edit stock entry</string>
     <string name="add">Add</string>
     <string name="edit">Edit</string>
+    <string name="refresh">Refresh</string>
 </resources>

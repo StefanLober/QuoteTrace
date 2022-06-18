@@ -3,6 +3,7 @@ package de.stefanlober.stocktrace
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import de.stefanlober.stocktrace.data.StockData
-import de.stefanlober.stocktrace.data.StockQuote
 import de.stefanlober.stocktrace.databinding.FragmentStockListBinding
+import de.stefanlober.stocktrace.dataproviders.GoogleDataProvider
+import java.util.concurrent.Callable
+
 
 class StockListFragment : Fragment() {
     private var _binding: FragmentStockListBinding? = null
 
     private val binding get() = _binding!!
+
+    private lateinit var stockDataList: List<StockData>
+    private val taskRunner = TaskRunner()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentStockListBinding.inflate(inflater, container, false)
@@ -26,20 +32,35 @@ class StockListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.fab.setOnClickListener {
+        binding.fabAdd.setOnClickListener {
             findNavController().navigate(R.id.action_StockListFragment_to_AddStockFragment)
         }
 
-        var stockDataSet = listOf(
-            StockData(1, "NYSE:F", StockQuote("Ford", 1143, "USD")),
-            StockData(2, "ETR:E2F", StockQuote("Électricité de France", 972, "EUR")),
-            StockData(3, "ETR:BMW", StockQuote("BMW", 24589, "EUR")),
-            StockData(4, "NYSE:IBM", StockQuote("IBM", 14421, "USD"))
-        )
-        val stockDataAdapter = StockDataAdapter(stockDataSet, ::adapterOnEditClick, ::adapterOnDeleteClick)
-
         val recyclerView: RecyclerView = view.findViewById(R.id.stock_data_view)
+
+        binding.fabUpdate.setOnClickListener {
+            updateStockEntries(recyclerView)
+        }
+
+        stockDataList = listOf(
+            StockData(1, "ETR:1u1"),
+            StockData(2, "ETR:SAP"),
+            StockData(3, "ETR:AMD")
+        )
+
+        val stockDataAdapter = StockDataAdapter(stockDataList, ::adapterOnEditClick, ::adapterOnDeleteClick)
         recyclerView.adapter = stockDataAdapter
+        updateStockEntries(recyclerView)
+    }
+
+    private fun updateStockEntries(recyclerView: RecyclerView) {
+        fun updateStockEntry(stockData: StockData?) {
+            recyclerView.adapter?.notifyItemChanged(stockDataList.indexOf(stockData))
+        }
+
+        for (stockData in stockDataList) {
+            taskRunner.executeAsync(StockDataUpdateCallable(stockData), ::updateStockEntry)
+        }
     }
 
     private fun adapterOnEditClick(stockData: StockData) {
@@ -66,6 +87,20 @@ class StockListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+}
+
+class StockDataUpdateCallable(private val stockData: StockData) : Callable<StockData> {
+    override fun call(): StockData {
+        val dataProvider = GoogleDataProvider()
+
+        try {
+            stockData.stockQuote = dataProvider.getStockQuote(stockData.symbol)
+        }
+        catch(ex: Exception) {
+            Log.println(Log.ERROR, "getStockQuote", ex.toString())
+        }
+        return stockData
     }
 }
 

@@ -3,8 +3,9 @@ package de.stefanlober.stocktrace.data
 import android.os.Parcel
 import android.os.Parcelable
 
-data class StockData(val id: Long, val symbol: String?, val stockQuote: StockQuote) : Parcelable {
-    constructor(parcel: Parcel) : this(parcel.readLong(), parcel.readString(), StockQuote(parcel.readString(), parcel.readLong(), parcel.readString()))
+data class StockData(val id: Long, val symbol: String, var stockQuote: StockQuote) : Parcelable {
+    constructor(id: Long, symbol: String) : this(id, symbol, StockQuote("", 0, ""))
+    constructor(parcel: Parcel) : this(parcel.readLong(), parcel.readString()!!, StockQuote(parcel.readString(), parcel.readLong(), parcel.readString()))
 
     override fun describeContents(): Int {
         return 0
@@ -14,7 +15,7 @@ data class StockData(val id: Long, val symbol: String?, val stockQuote: StockQuo
         parcel?.writeLong(id)
         parcel?.writeString(symbol)
         parcel?.writeString(stockQuote.name)
-        parcel?.writeLong(stockQuote.hundredthValue)
+        stockQuote.hundredthValue.let { parcel?.writeLong(it) }
         parcel?.writeString(stockQuote.currency)
     }
 

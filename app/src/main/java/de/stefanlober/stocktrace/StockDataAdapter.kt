@@ -8,7 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.stefanlober.stocktrace.data.StockData
 
-class StockDataAdapter(private val stockDataSet: List<StockData>, private val onEditClick: (StockData) -> Unit, private val onDeleteClick: (StockData) -> Unit) : RecyclerView.Adapter<StockDataAdapter.ViewHolder>() {
+class StockDataAdapter(private val stockDataList: List<StockData>, private val onEditClick: (StockData) -> Unit, private val onDeleteClick: (StockData) -> Unit)
+    : RecyclerView.Adapter<StockDataAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameView: TextView
         val quoteView: TextView
@@ -31,11 +32,11 @@ class StockDataAdapter(private val stockDataSet: List<StockData>, private val on
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val stockQuote = stockDataSet[position].stockQuote
+        val stockQuote = stockDataList[position].stockQuote
         viewHolder.nameView.text = stockQuote.name
         viewHolder.quoteView.text = "${stockQuote.currency} ${stockQuote.hundredthValue / 100.0}"
 
-        viewHolder.currentStockData = stockDataSet[position]
+        viewHolder.currentStockData = stockDataList[position]
 
         viewHolder.editButton.setOnClickListener {
             viewHolder.currentStockData?.let {
@@ -50,5 +51,5 @@ class StockDataAdapter(private val stockDataSet: List<StockData>, private val on
         }
     }
 
-    override fun getItemCount() = stockDataSet.size
+    override fun getItemCount() = stockDataList.size
 }

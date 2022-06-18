@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">StockTrace</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="stock_list_fragment_label">Stocks</string>
+    <string name="stock_add_fragment_label">Add stock entry</string>
+    <string name="stock_edit_fragment_label">Edit stock entry</string>
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+</resources>

@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace
+package de.stefanlober.stocktrace.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import de.stefanlober.stocktrace.data.StockData
+import de.stefanlober.stocktrace.R
+import de.stefanlober.stocktrace.data.StockEntity
 import de.stefanlober.stocktrace.databinding.FragmentEditStockBinding
 
 class EditStockFragment : Fragment() {
@@ -24,7 +25,7 @@ class EditStockFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var stockData = arguments?.getParcelable<StockData>("StockData")
+        var stockEntity = arguments?.getParcelable<StockEntity>("StockEntity")
 
         binding.buttonAdd.setOnClickListener {
             findNavController().navigate(R.id.action_EditStockFragment_to_StockListFragment)

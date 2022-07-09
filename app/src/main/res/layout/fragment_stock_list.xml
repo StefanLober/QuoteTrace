@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StockListFragment">
+    tools:context=".view.StockListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stock_data_view"

@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace
+package de.stefanlober.stocktrace.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import de.stefanlober.stocktrace.R
 import de.stefanlober.stocktrace.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

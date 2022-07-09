@@ -10,10 +10,17 @@ class TaskRunner {
     private val executor: Executor = THREAD_POOL_EXECUTOR
     private val handler: Handler = Handler(Looper.getMainLooper())
 
-    fun <R> executeAsync(callable: Callable<R>, callback: (R) -> Unit) {
+    fun executeAsync(callable: () -> Unit, callback: () -> Unit) {
         executor.execute {
-            val result: R = callable.call()
-            handler.post { callback(result) }
+            callable()
+            handler.post { callback() }
+        }
+    }
+
+    fun <R> executeAsync(data: R, callable: (R) -> Unit, callback: (R) -> Unit) {
+        executor.execute {
+            callable(data)
+            handler.post { callback(data) }
         }
     }
 }

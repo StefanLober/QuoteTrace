@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.view
+/*package de.stefanlober.stocktrace.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -36,4 +36,4 @@ class EditStockFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
+}*/

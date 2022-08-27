@@ -5,14 +5,14 @@
       <map>
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.567" />
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/drawable/ic_launcher_background.xml" value="0.567" />
-        <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/activity_main.xml" value="0.5380434782608695" />
+        <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/content_main.xml" value="0.5744791666666667" />
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/fragment_add_stock.xml" value="0.5744791666666667" />
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/fragment_edit_stock.xml" value="0.5744791666666667" />
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/fragment_first.xml" value="0.567741935483871" />
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/fragment_second.xml" value="0.5744791666666667" />
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/fragment_stock_list.xml" value="0.5744791666666667" />
-        <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/stock_row_item.xml" value="0.5744791666666667" />
+        <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/layout/stock_row_item.xml" value="0.1" />
         <entry key="..\:/Users/wizard/source/repos/StockTrace/app/src/main/res/menu/menu_main.xml" value="0.5744791666666667" />
       </map>
     </option>

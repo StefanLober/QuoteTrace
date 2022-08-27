@@ -1,3 +1,4 @@
+/*
 package de.stefanlober.stocktrace.view
 
 import android.app.AlertDialog
@@ -131,4 +132,4 @@ class StockListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
+}*/

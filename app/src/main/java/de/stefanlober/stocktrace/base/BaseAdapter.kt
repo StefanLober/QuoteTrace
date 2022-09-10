@@ -7,9 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<BINDING : ViewDataBinding, T : ListAdapterItem>(
-    var data: List<T>
-) : RecyclerView.Adapter<BaseViewHolder<BINDING>>() {
+abstract class BaseAdapter<BINDING : ViewDataBinding, T : ListAdapterItem>(var data: List<T>) : RecyclerView.Adapter<BaseViewHolder<BINDING>>() {
 
     @get:LayoutRes
     abstract val layoutId: Int
@@ -22,12 +20,7 @@ abstract class BaseAdapter<BINDING : ViewDataBinding, T : ListAdapterItem>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<BINDING> {
-        val binder = DataBindingUtil.inflate<BINDING>(
-            LayoutInflater.from(parent.context),
-            layoutId,
-            parent,
-            false
-        )
+        val binder = DataBindingUtil.inflate<BINDING>(LayoutInflater.from(parent.context), layoutId, parent, false)
 
         return BaseViewHolder(binder)
     }

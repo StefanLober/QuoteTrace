@@ -14,11 +14,7 @@
         android:name=".application.StockTrace"
         android:supportsRtl="true"
         android:theme="@style/Theme.StockTrace">
-        <activity
-            android:name=".view.MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.StockTrace.NoActionBar">
+        <activity android:name=".view.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

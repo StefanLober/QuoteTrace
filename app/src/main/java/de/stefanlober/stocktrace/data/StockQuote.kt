@@ -1,3 +1,5 @@
 package de.stefanlober.stocktrace.data
 
-data class StockQuote(val name: String?, val hundredthValue: Long, val currency: String?)
+import java.math.BigDecimal
+
+data class StockQuote(val name: String, val amount: BigDecimal, val currency: String, val loaded: Boolean)

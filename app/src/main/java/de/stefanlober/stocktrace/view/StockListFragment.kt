@@ -1,135 +1,60 @@
-/*
 package de.stefanlober.stocktrace.view
 
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import de.stefanlober.stocktrace.R
-import de.stefanlober.stocktrace.TaskRunner
-import de.stefanlober.stocktrace.data.StockData
-import de.stefanlober.stocktrace.data.StockEntity
 import de.stefanlober.stocktrace.databinding.FragmentStockListBinding
-import de.stefanlober.stocktrace.dataproviders.GoogleDataProvider
-import de.stefanlober.stocktrace.db.AppDatabase
+import de.stefanlober.stocktrace.internal.EmptyEventObserver
+import de.stefanlober.stocktrace.internal.EventObserver
+import de.stefanlober.stocktrace.viewmodel.StockListViewModel
 
 class StockListFragment : Fragment() {
-    private var _binding: FragmentStockListBinding? = null
+    private val viewModel by viewModels<StockListViewModel>()
 
-    private val binding get() = _binding!!
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val binding = FragmentStockListBinding.inflate(inflater, container, false)
+        binding.apply {
+            viewModel = this@StockListFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
 
-    private lateinit var stockDataList: List<StockData>
-    private val taskRunner = TaskRunner()
+        binding.adapter = StockDataAdapter(listOf(), viewModel)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentStockListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.fabAdd.setOnClickListener {
+        viewModel.onAddStockData.observe(viewLifecycleOwner, EmptyEventObserver {
             findNavController().navigate(R.id.action_StockListFragment_to_AddStockFragment)
-        }
+        })
 
-        binding.fabUpdate.setOnClickListener {
-            updateStockEntries(binding.stockDataView)
-        }
+        viewModel.onEditStockData.observe(viewLifecycleOwner, EventObserver {
+            Toast.makeText(context, "Edit: ${it.stockQuote.name}", Toast.LENGTH_SHORT).show()
+            //val bundle = Bundle()
+            //bundle.putParcelable("StockEntity", it.stockEntity)
+            //findNavController().navigate(R.id.action_StockListFragment_to_EditStockFragment, bundle)
+        })
 
-        taskRunner.executeAsync(::fillStockDataList) { updateStockEntries(binding.stockDataView) }
-    }
-
-    private fun fillStockDataList() {
-        stockDataList = emptyList()
-
-        try {
-            val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "database-name").build()
-            val stockEntityDao = db.stockEntityDao()
-            stockDataList = stockEntityDao.getAll().map { StockData(it) }
-        } catch (ex: Exception) {
-            Log.println(Log.ERROR, "fillStockDataList getAll", ex.toString())
-        }
-
-        try {
-            if (stockDataList.isEmpty()) {
-                val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "database-name").build()
-                val stockEntityDao = db.stockEntityDao()
-                stockEntityDao.insert(StockEntity(0, "ETR:1u1"))
-                stockEntityDao.insert(StockEntity(0, "ETR:SAP"))
-                stockEntityDao.insert(StockEntity(0, "ETR:AMD"))
-                stockDataList = stockEntityDao.getAll().map { StockData(it) }
-            }
-        } catch (ex: Exception) {
-            Log.println(Log.ERROR, "fillStockDataList insert default", ex.toString())
-        }
-    }
-
-    private fun updateStockEntries(recyclerView: RecyclerView) {
-        fun updateStockData(stockData: StockData) {
-            val dataProvider = GoogleDataProvider()
-
-            try {
-                stockData.stockQuote = dataProvider.getStockQuote(stockData.stockEntity.symbol)
-                stockData.loaded = true
-            }
-            catch(ex: Exception) {
-                Log.println(Log.ERROR, "getStockQuote", ex.toString())
-            }
-        }
-
-        val stockDataAdapter = StockDataAdapter(stockDataList, ::adapterOnEditClick, ::adapterOnDeleteClick)
-        recyclerView.adapter = stockDataAdapter
-
-        for (stockData in stockDataList) {
-            stockData.loaded = false
-            recyclerView.adapter?.notifyItemChanged(stockDataList.indexOf(stockData))
-            taskRunner.executeAsync(stockData, ::updateStockData) { recyclerView.adapter?.notifyItemChanged(stockDataList.indexOf(stockData)) }
-        }
-    }
-
-    private fun adapterOnEditClick(stockData: StockData) {
-        val bundle = Bundle()
-        bundle.putParcelable("StockEntity", stockData.stockEntity)
-        findNavController().navigate(R.id.action_StockListFragment_to_EditStockFragment, bundle)
-    }
-
-    private fun adapterOnDeleteClick(stockData: StockData) {
-        fun deleteStockEntity(stockEntity: StockEntity) {
-            try {
-                val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "database-name").build()
-                val stockEntityDao = db.stockEntityDao()
-                stockEntityDao.delete(stockEntity)
-            } catch (ex: Exception) {
-                Log.println(Log.ERROR, "adapterOnDeleteClick", ex.toString())
-            }
-        }
-
-        val dialogClickListener = DialogInterface.OnClickListener { dialog, which ->
-            when (which) {
-                DialogInterface.BUTTON_POSITIVE -> {
-                    taskRunner.executeAsync(stockData.stockEntity, ::deleteStockEntity) {
-                        taskRunner.executeAsync(::fillStockDataList) { updateStockEntries(binding.stockDataView) } }
+        viewModel.onDeleteStockData.observe(viewLifecycleOwner, EventObserver {
+            val dialogClickListener = DialogInterface.OnClickListener { _, which ->
+                when (which) {
+                    DialogInterface.BUTTON_POSITIVE -> {
+                        viewModel.deleteStockData(it)
+                    }
                 }
             }
-        }
 
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        builder.setTitle("Delete stock entry")
-            .setMessage("Are you sure?")
-            .setPositiveButton("Yes", dialogClickListener)
-            .setNegativeButton("No", dialogClickListener).show()
-    }
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+            builder.setTitle("Delete stock entry")
+                .setMessage("Are you sure?")
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show()
+        })
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return binding.root
     }
-}*/
+}

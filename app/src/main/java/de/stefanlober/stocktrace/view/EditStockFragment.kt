@@ -1,39 +1,24 @@
-/*package de.stefanlober.stocktrace.view
+package de.stefanlober.stocktrace.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import de.stefanlober.stocktrace.R
-import de.stefanlober.stocktrace.data.StockEntity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import de.stefanlober.stocktrace.databinding.FragmentEditStockBinding
+import de.stefanlober.stocktrace.viewmodel.EditStockViewModel
 
 class EditStockFragment : Fragment() {
-    private var _binding: FragmentEditStockBinding? = null
+    private val viewModel by viewModels<EditStockViewModel>()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val binding = FragmentEditStockBinding.inflate(inflater, container, false)
+        binding.apply {
+            viewModel = this@EditStockFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
-        _binding = FragmentEditStockBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        var stockEntity = arguments?.getParcelable<StockEntity>("StockEntity")
-
-        binding.buttonAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_EditStockFragment_to_StockListFragment)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-}*/
+}

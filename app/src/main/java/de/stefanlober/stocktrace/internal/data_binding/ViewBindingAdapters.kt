@@ -7,13 +7,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import de.stefanlober.stocktrace.base.BaseAdapter
 import de.stefanlober.stocktrace.base.ListAdapterItem
-import de.stefanlober.stocktrace.data.StockData
 
 @BindingAdapter("setAdapter")
-fun setAdapter(
-    recyclerView: RecyclerView,
-    adapter: BaseAdapter<ViewDataBinding, ListAdapterItem>?
-) {
+fun setAdapter(recyclerView: RecyclerView, adapter: BaseAdapter<ViewDataBinding, ListAdapterItem>?) {
     adapter?.let {
         recyclerView.adapter = it
     }

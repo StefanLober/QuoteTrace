@@ -4,8 +4,9 @@ import de.stefanlober.stocktrace.data.StockQuote
 import org.jsoup.Jsoup
 import java.math.BigDecimal
 import java.net.URLEncoder
+import javax.inject.Inject
 
-class GoogleDataProvider : IDataProvider {
+class GoogleDataProvider @Inject constructor() : IDataProvider {
     private val userAgent = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36"
 
     override fun getStockQuote(symbol: String): StockQuote {
@@ -24,3 +25,4 @@ class GoogleDataProvider : IDataProvider {
         return StockQuote(name, amount, currency, true)
     }
 }
+

@@ -2,13 +2,13 @@ package de.stefanlober.stocktrace.data
 
 import android.icu.text.NumberFormat
 import android.icu.util.Currency
-import de.stefanlober.stocktrace.base.ListAdapterItem
+import de.stefanlober.stocktrace.base.IListAdapterItem
 import java.math.BigDecimal
 import java.util.*
 
 data class StockData(
     var stockEntity: StockEntity,
-    var stockQuote: StockQuote) : ListAdapterItem {
+    var stockQuote: StockQuote) : IListAdapterItem {
     constructor(stockEntity: StockEntity) : this(stockEntity, StockQuote("", BigDecimal(-1), "", false))
 
     override val id: Long

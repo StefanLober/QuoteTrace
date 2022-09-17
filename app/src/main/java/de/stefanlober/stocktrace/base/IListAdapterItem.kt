@@ -1,5 +1,5 @@
 package de.stefanlober.stocktrace.base
 
-interface ListAdapterItem {
+interface IListAdapterItem {
     val id : Long
 }

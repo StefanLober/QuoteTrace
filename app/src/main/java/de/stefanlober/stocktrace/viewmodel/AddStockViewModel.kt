@@ -8,7 +8,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import de.stefanlober.stocktrace.data.StockEntity
 import de.stefanlober.stocktrace.db.AppDatabase
 import de.stefanlober.stocktrace.internal.EmptyEvent
-import kotlinx.coroutines.Dispatchers
+import de.stefanlober.stocktrace.internal.dispatcher.IoDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -17,7 +18,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddStockViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
+class AddStockViewModel @Inject constructor(
+    application: Application,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher) : AndroidViewModel(application) {
+
     private val tag: String = StockListViewModel::class.java.simpleName
 
     private val stockEntityDao = Room.databaseBuilder(application, AppDatabase::class.java, "database-name").build().stockEntityDao()
@@ -32,7 +36,7 @@ class AddStockViewModel @Inject constructor(application: Application) : AndroidV
                 addFlow(it)
                     .onStart {
                     }.catch { err ->
-                        Log.println(Log.ERROR, tag, err.toString())
+                        Log.e(tag, err.toString())
                     }
                     .collect {
                         onFinished.value = EmptyEvent()
@@ -46,5 +50,5 @@ class AddStockViewModel @Inject constructor(application: Application) : AndroidV
         stockEntityDao.insert(stockEntity)
 
         emit(stockEntity)
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(ioDispatcher)
 }

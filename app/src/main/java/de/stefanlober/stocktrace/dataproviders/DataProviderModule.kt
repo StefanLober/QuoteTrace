@@ -1,0 +1,15 @@
+package de.stefanlober.stocktrace.dataproviders
+
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+
+@Module
+@InstallIn(ViewModelComponent::class)
+abstract class DataProviderModule {
+    @Binds
+    abstract fun bindDataProvider(
+        dataProviderImpl: GoogleDataProvider
+    ): IDataProvider
+}

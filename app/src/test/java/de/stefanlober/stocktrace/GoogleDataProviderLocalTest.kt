@@ -5,17 +5,12 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class GoogleDataProviderLocalTest {
     @Test
     fun getSAPQuote() {
         val dataProvider = GoogleDataProvider()
         val stockQuote = dataProvider.getStockQuote("ETR:SAP")
-        assertEquals(9900, stockQuote.hundredthValue)
+        assertEquals(99.00, stockQuote.amount)
         assertEquals("EUR", stockQuote.currency)
     }
 }

@@ -6,10 +6,10 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import de.stefanlober.stocktrace.base.BaseAdapter
-import de.stefanlober.stocktrace.base.ListAdapterItem
+import de.stefanlober.stocktrace.base.IListAdapterItem
 
 @BindingAdapter("setAdapter")
-fun setAdapter(recyclerView: RecyclerView, adapter: BaseAdapter<ViewDataBinding, ListAdapterItem>?) {
+fun setAdapter(recyclerView: RecyclerView, adapter: BaseAdapter<ViewDataBinding, IListAdapterItem>?) {
     adapter?.let {
         recyclerView.adapter = it
     }
@@ -17,8 +17,8 @@ fun setAdapter(recyclerView: RecyclerView, adapter: BaseAdapter<ViewDataBinding,
 
 @Suppress("UNCHECKED_CAST")
 @BindingAdapter("submitList")
-fun submitList(recyclerView: RecyclerView, list: List<ListAdapterItem>?) {
-    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, ListAdapterItem>?
+fun submitList(recyclerView: RecyclerView, list: List<IListAdapterItem>?) {
+    val adapter = recyclerView.adapter as BaseAdapter<ViewDataBinding, IListAdapterItem>?
     adapter?.updateData(list ?: listOf())
 }
 

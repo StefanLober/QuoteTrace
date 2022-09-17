@@ -3,24 +3,28 @@ package de.stefanlober.stocktrace.viewmodel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.Room
 import dagger.hilt.android.lifecycle.HiltViewModel
+import de.stefanlober.stocktrace.dao.StockEntityDao
 import de.stefanlober.stocktrace.data.StockData
 import de.stefanlober.stocktrace.data.StockEntity
-import de.stefanlober.stocktrace.dataproviders.GoogleDataProvider
-import de.stefanlober.stocktrace.db.AppDatabase
+import de.stefanlober.stocktrace.dataproviders.IDataProvider
 import de.stefanlober.stocktrace.internal.EmptyEvent
 import de.stefanlober.stocktrace.internal.Event
+import de.stefanlober.stocktrace.internal.dispatcher.IoDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class StockListViewModel @Inject constructor(application: Application) : AndroidViewModel(application), StockDataListener {
-    private val tag: String = StockListViewModel::class.java.simpleName
+class StockListViewModel @Inject constructor(
+    application: Application,
+    private val stockEntityDao: StockEntityDao,
+    private val dataProvider: IDataProvider,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher) : AndroidViewModel(application), StockDataListener {
 
-    private val stockEntityDao = Room.databaseBuilder(application, AppDatabase::class.java, "database-name").build().stockEntityDao()
+    private val tag: String = StockListViewModel::class.java.simpleName
 
     private val _stockDataList = MutableLiveData<List<StockData>>()
     val stockDataList: LiveData<List<StockData>> = _stockDataList
@@ -34,6 +38,7 @@ class StockListViewModel @Inject constructor(application: Application) : Android
     val onDeleteStockData = MutableLiveData<Event<StockData>>()
 
     init {
+        Log.i(tag, "init")
         fillStockDataList()
     }
 
@@ -43,13 +48,13 @@ class StockListViewModel @Inject constructor(application: Application) : Android
                 .onStart {
                     showProgressBar.postValue(true)
                 }.catch { err ->
-                    Log.println(Log.ERROR, tag, err.toString())
+                    Log.e(tag, err.toString())
                     showProgressBar.postValue(false)
                 }
                 .collect { list ->
-                    showProgressBar.postValue(false)
                     _stockDataList.value = list
                     updateStockQuotes()
+                    showProgressBar.postValue(false)
                 }
         }
     }
@@ -67,12 +72,12 @@ class StockListViewModel @Inject constructor(application: Application) : Android
                 list = stockEntityDao.getAll().map { StockData(it) }
             }
         } catch (ex: Exception) {
-            Log.println(Log.ERROR, tag, ex.toString())
+            Log.e(tag, ex.toString())
             throw ex
         }
 
         emit(list)
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(ioDispatcher)
 
     fun updateStockQuotes() {
         viewModelScope.launch {
@@ -81,12 +86,12 @@ class StockListViewModel @Inject constructor(application: Application) : Android
                     .onStart {
                         showProgressBar.postValue(true)
                     }.catch { err ->
-                        Log.println(Log.ERROR, tag, err.toString())
+                        Log.e(tag, err.toString())
                         showProgressBar.postValue(false)
                     }
                     .collect { list ->
-                        showProgressBar.postValue(false)
                         _stockDataList.value = list
+                        showProgressBar.postValue(false)
                     }
             }
         }
@@ -95,13 +100,13 @@ class StockListViewModel @Inject constructor(application: Application) : Android
     private fun updateStockQuotesFlow(list: List<StockData>) = flow {
         for (stockData in list)
             try {
-                stockData.stockQuote = GoogleDataProvider().getStockQuote(stockData.stockEntity.symbol)
+                stockData.stockQuote = dataProvider.getStockQuote(stockData.stockEntity.symbol)
             } catch (ex: Exception) {
-                Log.println(Log.ERROR, tag, ex.toString())
+                Log.e(tag, ex.toString())
             }
 
         emit(list)
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(ioDispatcher)
 
     fun deleteStockData(stockData: StockData) {
         viewModelScope.launch {
@@ -110,7 +115,7 @@ class StockListViewModel @Inject constructor(application: Application) : Android
                     .onStart {
                         showProgressBar.postValue(true)
                     }.catch { err ->
-                        Log.println(Log.ERROR, tag, err.toString())
+                        Log.e(tag, err.toString())
                         showProgressBar.postValue(false)
                     }
                     .collect { list ->

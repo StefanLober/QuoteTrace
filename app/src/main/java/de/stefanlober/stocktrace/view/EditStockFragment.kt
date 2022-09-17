@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import de.stefanlober.stocktrace.databinding.FragmentEditStockBinding
 import de.stefanlober.stocktrace.viewmodel.EditStockViewModel
 
+@AndroidEntryPoint
 class EditStockFragment : Fragment() {
     private val viewModel by viewModels<EditStockViewModel>()
 

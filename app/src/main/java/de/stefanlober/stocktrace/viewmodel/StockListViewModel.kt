@@ -66,9 +66,9 @@ class StockListViewModel @Inject constructor(
             list = stockEntityDao.getAll().map { StockData(it) }
 
             if (list.isEmpty()) {
-                stockEntityDao.insert(StockEntity(0, "ETR:1u1"))
-                stockEntityDao.insert(StockEntity(0, "ETR:SAP"))
-                stockEntityDao.insert(StockEntity(0, "ETR:AMD"))
+                stockEntityDao.insert(StockEntity(0, "1U1.DE"))
+                stockEntityDao.insert(StockEntity(0, "SAP.DE"))
+                stockEntityDao.insert(StockEntity(0, "AMD.DE"))
                 list = stockEntityDao.getAll().map { StockData(it) }
             }
         } catch (ex: Exception) {

@@ -10,6 +10,6 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class DataProviderModule {
     @Binds
     abstract fun bindDataProvider(
-        dataProviderImpl: GoogleDataProvider
+        dataProviderImpl: YahooFinanceDataProvider
     ): IDataProvider
 }

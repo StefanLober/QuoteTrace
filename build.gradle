@@ -34,12 +34,12 @@ ext {
     appcompatVersion = '1.5.0'
     activityKtxVersion = '1.5.1'
     fragmentKtxVersion = '1.5.2'
-    jSoupVersion = '1.15.3'
     ktxVersion = '2.5.1'
     archVersion = "2.1.0"
     lifecycleVersion = '2.5.1'
     materialVersion = '1.6.1'
     roomVersion = '2.4.3'
+    yahooFinanceVersion = '3.17.0'
 
     jUnitVersion = '4.13.2'
     androidXTestVersion = '1.4.0'

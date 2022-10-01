@@ -95,9 +95,10 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    implementation "org.jsoup:jsoup:$jSoupVersion"
+    implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: "$yahooFinanceVersion"
 
-    testImplementation "junit:junit:$jUnitVersion"
+
+testImplementation "junit:junit:$jUnitVersion"
     testImplementation "androidx.test:core:$androidXTestVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion"

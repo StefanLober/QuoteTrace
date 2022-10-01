@@ -132,7 +132,7 @@ class StockListViewModel @Inject constructor(
         newList.remove(stockData)
 
         emit(newList.toList())
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(ioDispatcher)
 
     fun add() {
         onAddStockData.value = EmptyEvent()

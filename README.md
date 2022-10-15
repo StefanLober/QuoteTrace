@@ -1,3 +1,3 @@
 # StockTrace
 
-Android to keep track of stock prices
+Android app to keep track of stock prices

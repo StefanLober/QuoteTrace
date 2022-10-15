@@ -12,7 +12,6 @@ import de.stefanlober.stocktrace.internal.EmptyEvent
 import de.stefanlober.stocktrace.internal.Event
 import de.stefanlober.stocktrace.internal.dispatcher.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject

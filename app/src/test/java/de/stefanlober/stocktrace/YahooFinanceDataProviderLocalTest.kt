@@ -10,7 +10,7 @@ class YahooFinanceDataProviderLocalTest {
     fun getSAPQuote() {
         val dataProvider = YahooFinanceDataProvider()
         val stockQuote = dataProvider.getStockQuote("SAP.DE")
-        assertEquals(99.00, stockQuote.amount)
+        assertEquals(80.00, stockQuote.amount.toDouble(), 20.0)
         assertEquals("EUR", stockQuote.currency)
     }
 }

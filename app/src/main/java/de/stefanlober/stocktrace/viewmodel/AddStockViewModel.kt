@@ -3,11 +3,9 @@ package de.stefanlober.stocktrace.viewmodel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.Room
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.stefanlober.stocktrace.dao.StockEntityDao
 import de.stefanlober.stocktrace.data.StockEntity
-import de.stefanlober.stocktrace.db.AppDatabase
 import de.stefanlober.stocktrace.internal.EmptyEvent
 import de.stefanlober.stocktrace.internal.dispatcher.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher

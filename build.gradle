@@ -39,6 +39,9 @@ ext {
     lifecycleVersion = '2.5.1'
     materialVersion = '1.6.1'
     roomVersion = '2.4.3'
+
+    klaxonVersion = '5.5'
+    jSoupVersion = '1.15.3'
     yahooFinanceVersion = '3.17.0'
 
     jUnitVersion = '4.13.2'

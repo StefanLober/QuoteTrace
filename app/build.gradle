@@ -95,6 +95,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
+    implementation "com.beust:klaxon:$klaxonVersion"
+
     implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: "$yahooFinanceVersion"
 
 

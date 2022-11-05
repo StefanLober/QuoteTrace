@@ -1,7 +1,7 @@
-package de.stefanlober.stocktrace.dataproviders
+package de.stefanlober.stocktrace.quoteproviders
 
 import de.stefanlober.stocktrace.data.StockQuote
 
-interface IDataProvider {
+interface IQuoteProvider {
     fun getStockQuote(symbol: String) : StockQuote
 }

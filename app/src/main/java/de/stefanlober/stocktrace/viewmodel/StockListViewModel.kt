@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import de.stefanlober.stocktrace.dao.StockEntityDao
 import de.stefanlober.stocktrace.data.StockData
 import de.stefanlober.stocktrace.data.StockEntity
-import de.stefanlober.stocktrace.dataproviders.IDataProvider
+import de.stefanlober.stocktrace.quoteproviders.IQuoteProvider
 import de.stefanlober.stocktrace.internal.EmptyEvent
 import de.stefanlober.stocktrace.internal.Event
 import de.stefanlober.stocktrace.internal.dispatcher.IoDispatcher
@@ -20,7 +20,7 @@ import javax.inject.Inject
 class StockListViewModel @Inject constructor(
     application: Application,
     private val stockEntityDao: StockEntityDao,
-    private val dataProvider: IDataProvider,
+    private val dataProvider: IQuoteProvider,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher) : AndroidViewModel(application), StockDataListener {
 
     private val tag: String = StockListViewModel::class.java.simpleName

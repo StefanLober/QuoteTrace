@@ -1,8 +1,8 @@
-package de.stefanlober.stocktrace.dataproviders
+package de.stefanlober.stocktrace.quoteproviders
 
 import com.beust.klaxon.Klaxon
 import de.stefanlober.stocktrace.data.StockQuote
-import de.stefanlober.stocktrace.dataproviders.json.YahooFinanceJson
+import de.stefanlober.stocktrace.quoteproviders.json.YahooFinanceJson
 import java.io.InputStream
 import java.math.BigDecimal
 import java.net.URL
@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 
 
-class YahooFinanceQuoteProvider @Inject constructor() : IDataProvider {
+class YahooFinanceQuoteProvider @Inject constructor() : IQuoteProvider {
     private val baseUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
     private val userAgent = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36"
 

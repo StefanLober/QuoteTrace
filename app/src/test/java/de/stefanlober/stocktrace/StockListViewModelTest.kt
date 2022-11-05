@@ -2,15 +2,11 @@ package de.stefanlober.stocktrace
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
 import de.stefanlober.stocktrace.dao.StockEntityDao
-import de.stefanlober.stocktrace.data.StockData
 import de.stefanlober.stocktrace.data.StockEntity
 import de.stefanlober.stocktrace.data.StockQuote
-import de.stefanlober.stocktrace.dataproviders.IDataProvider
-import de.stefanlober.stocktrace.db.AppDatabase
+import de.stefanlober.stocktrace.quoteproviders.IQuoteProvider
 import de.stefanlober.stocktrace.viewmodel.StockListViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
 import org.junit.Rule
@@ -44,7 +40,7 @@ class StockListViewModelTest {
 
         val stockQuote = StockQuote("SAP AG", BigDecimal("99.00"), "EUR", true)
 
-        val dataProvider = mock<IDataProvider> {
+        val dataProvider = mock<IQuoteProvider> {
             on {getStockQuote("SAP")} doReturn stockQuote
         }
 

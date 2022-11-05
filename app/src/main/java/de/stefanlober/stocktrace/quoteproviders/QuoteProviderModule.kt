@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.dataproviders
+package de.stefanlober.stocktrace.quoteproviders
 
 import dagger.Binds
 import dagger.Module
@@ -7,9 +7,9 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class DataProviderModule {
+abstract class QuoteProviderModule {
     @Binds
-    abstract fun bindDataProvider(
+    abstract fun bindQuoteProvider(
         dataProviderImpl: YahooFinanceQuoteProvider
-    ): IDataProvider
+    ): IQuoteProvider
 }

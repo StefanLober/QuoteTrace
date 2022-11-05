@@ -97,8 +97,6 @@ dependencies {
 
     implementation "com.beust:klaxon:$klaxonVersion"
 
-    implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: "$yahooFinanceVersion"
-
 
 testImplementation "junit:junit:$jUnitVersion"
     testImplementation "androidx.test:core:$androidXTestVersion"

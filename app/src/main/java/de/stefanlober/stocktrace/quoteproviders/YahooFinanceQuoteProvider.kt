@@ -1,8 +1,8 @@
-package de.stefanlober.stocktrace.quoteproviders
+package de.stefanlober.quotetrace.quoteproviders
 
 import com.beust.klaxon.Klaxon
-import de.stefanlober.stocktrace.data.StockQuote
-import de.stefanlober.stocktrace.quoteproviders.json.YahooFinanceJson
+import de.stefanlober.quotetrace.data.StockQuote
+import de.stefanlober.quotetrace.quoteproviders.json.YahooFinanceJson
 import java.io.InputStream
 import java.math.BigDecimal
 import java.net.URL

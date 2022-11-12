@@ -1,12 +1,12 @@
-package de.stefanlober.stocktrace.internal.data_binding
+package de.stefanlober.quotetrace.internal.data_binding
 
 import android.view.View
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import de.stefanlober.stocktrace.base.BaseAdapter
-import de.stefanlober.stocktrace.base.IListAdapterItem
+import de.stefanlober.quotetrace.base.BaseAdapter
+import de.stefanlober.quotetrace.base.IListAdapterItem
 
 @BindingAdapter("setAdapter")
 fun setAdapter(recyclerView: RecyclerView, adapter: BaseAdapter<ViewDataBinding, IListAdapterItem>?) {

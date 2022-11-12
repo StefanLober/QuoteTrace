@@ -1,6 +1,6 @@
-package de.stefanlober.stocktrace.viewmodel
+package de.stefanlober.quotetrace.viewmodel
 
-import de.stefanlober.stocktrace.data.StockData
+import de.stefanlober.quotetrace.data.StockData
 
 interface StockDataListener {
     fun edit(stockData: StockData)

@@ -1,7 +1,7 @@
-package de.stefanlober.stocktrace.dao
+package de.stefanlober.quotetrace.dao
 
 import androidx.room.*
-import de.stefanlober.stocktrace.data.StockEntity
+import de.stefanlober.quotetrace.data.StockEntity
 
 @Dao
 interface StockEntityDao {

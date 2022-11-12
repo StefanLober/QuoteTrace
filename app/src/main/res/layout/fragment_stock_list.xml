@@ -7,10 +7,10 @@
     <data>
         <variable
             name="viewModel"
-            type="de.stefanlober.stocktrace.viewmodel.StockListViewModel" />
+            type="de.stefanlober.quotetrace.viewmodel.StockListViewModel" />
         <variable
             name="adapter"
-            type="de.stefanlober.stocktrace.view.StockDataAdapter" />
+            type="de.stefanlober.quotetrace.view.StockDataAdapter" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

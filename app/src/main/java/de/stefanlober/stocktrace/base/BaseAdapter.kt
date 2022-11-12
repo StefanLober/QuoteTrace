@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.base
+package de.stefanlober.quotetrace.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

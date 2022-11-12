@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.quoteproviders
+package de.stefanlober.quotetrace.quoteproviders
 
 import dagger.Binds
 import dagger.Module

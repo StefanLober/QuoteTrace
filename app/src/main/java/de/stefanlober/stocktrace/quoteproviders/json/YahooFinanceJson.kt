@@ -2,7 +2,7 @@
 //
 //   val yahooFinanceJson = YahooFinanceJson.fromJson(jsonString)
 
-package de.stefanlober.stocktrace.quoteproviders.json
+package de.stefanlober.quotetrace.quoteproviders.json
 
 import com.beust.klaxon.*
 

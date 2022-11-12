@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.internal
+package de.stefanlober.quotetrace.internal
 
 open class Event<out T>(private val content: T) {
     @Suppress("MemberVisibilityCanBePrivate")

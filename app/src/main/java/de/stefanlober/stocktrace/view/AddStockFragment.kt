@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.view
+package de.stefanlober.quotetrace.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import de.stefanlober.stocktrace.R
-import de.stefanlober.stocktrace.databinding.FragmentAddStockBinding
-import de.stefanlober.stocktrace.internal.EmptyEventObserver
-import de.stefanlober.stocktrace.viewmodel.AddStockViewModel
+import de.stefanlober.quotetrace.R
+import de.stefanlober.quotetrace.databinding.FragmentAddStockBinding
+import de.stefanlober.quotetrace.internal.EmptyEventObserver
+import de.stefanlober.quotetrace.viewmodel.AddStockViewModel
 
 @AndroidEntryPoint
 class AddStockFragment : Fragment() {

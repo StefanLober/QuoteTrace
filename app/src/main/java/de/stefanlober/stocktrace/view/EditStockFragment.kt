@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.view
+package de.stefanlober.quotetrace.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import de.stefanlober.stocktrace.databinding.FragmentEditStockBinding
-import de.stefanlober.stocktrace.viewmodel.EditStockViewModel
+import de.stefanlober.quotetrace.databinding.FragmentEditStockBinding
+import de.stefanlober.quotetrace.viewmodel.EditStockViewModel
 
 @AndroidEntryPoint
 class EditStockFragment : Fragment() {

@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.internal
+package de.stefanlober.quotetrace.internal
 
 open class EmptyEvent {
     @Suppress("MemberVisibilityCanBePrivate")

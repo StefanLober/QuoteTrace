@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.internal.dispatcher
+package de.stefanlober.quotetrace.internal.dispatcher
 
 import dagger.Module
 import dagger.Provides

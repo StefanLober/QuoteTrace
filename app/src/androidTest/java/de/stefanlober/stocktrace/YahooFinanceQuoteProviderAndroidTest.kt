@@ -1,7 +1,7 @@
-package de.stefanlober.stocktrace
+package de.stefanlober.quotetrace
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import de.stefanlober.stocktrace.quoteproviders.YahooFinanceQuoteProvider
+import de.stefanlober.quotetrace.quoteproviders.YahooFinanceQuoteProvider
 
 import org.junit.Test
 import org.junit.runner.RunWith

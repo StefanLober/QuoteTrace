@@ -1,6 +1,6 @@
-package de.stefanlober.stocktrace
+package de.stefanlober.quotetrace
 
-import de.stefanlober.stocktrace.quoteproviders.YahooFinanceQuoteProvider
+import de.stefanlober.quotetrace.quoteproviders.YahooFinanceQuoteProvider
 import org.junit.Test
 
 import org.junit.Assert.*

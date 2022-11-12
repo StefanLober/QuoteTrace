@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/StockListFragment"
-        android:name="de.stefanlober.stocktrace.view.StockListFragment"
+        android:name="de.stefanlober.quotetrace.view.StockListFragment"
         android:label="@string/stock_list_fragment_label"
         tools:layout="@layout/fragment_stock_list">
 
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/AddStockFragment"
-        android:name="de.stefanlober.stocktrace.view.AddStockFragment"
+        android:name="de.stefanlober.quotetrace.view.AddStockFragment"
         android:label="@string/stock_add_fragment_label"
         tools:layout="@layout/fragment_add_stock">
 
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/EditStockFragment"
-        android:name="de.stefanlober.stocktrace.view.EditStockFragment"
+        android:name="de.stefanlober.quotetrace.view.EditStockFragment"
         android:label="@string/stock_edit_fragment_label"
         tools:layout="@layout/fragment_edit_stock">
 

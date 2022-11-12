@@ -1,8 +1,8 @@
-package de.stefanlober.stocktrace.application
+package de.stefanlober.quotetrace.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class StockTrace: Application() {
+class QuoteTrace: Application() {
 }

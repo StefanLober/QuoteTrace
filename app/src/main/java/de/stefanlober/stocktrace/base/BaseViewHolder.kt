@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.base
+package de.stefanlober.quotetrace.base
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

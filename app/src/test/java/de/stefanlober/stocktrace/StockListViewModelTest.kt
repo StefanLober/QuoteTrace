@@ -1,12 +1,12 @@
-package de.stefanlober.stocktrace
+package de.stefanlober.quotetrace
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import de.stefanlober.stocktrace.dao.StockEntityDao
-import de.stefanlober.stocktrace.data.StockEntity
-import de.stefanlober.stocktrace.data.StockQuote
-import de.stefanlober.stocktrace.quoteproviders.IQuoteProvider
-import de.stefanlober.stocktrace.viewmodel.StockListViewModel
+import de.stefanlober.quotetrace.dao.StockEntityDao
+import de.stefanlober.quotetrace.data.StockEntity
+import de.stefanlober.quotetrace.data.StockQuote
+import de.stefanlober.quotetrace.quoteproviders.IQuoteProvider
+import de.stefanlober.quotetrace.viewmodel.StockListViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
 import org.junit.Rule

@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.data
+package de.stefanlober.quotetrace.data
 
 import java.math.BigDecimal
 

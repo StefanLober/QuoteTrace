@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.data
+package de.stefanlober.quotetrace.data
 
 import android.os.Parcel
 import android.os.Parcelable

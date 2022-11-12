@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace
+package de.stefanlober.quotetrace
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

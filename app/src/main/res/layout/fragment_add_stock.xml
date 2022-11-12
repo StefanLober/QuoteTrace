@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="de.stefanlober.stocktrace.viewmodel.AddStockViewModel" />
+            type="de.stefanlober.quotetrace.viewmodel.AddStockViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

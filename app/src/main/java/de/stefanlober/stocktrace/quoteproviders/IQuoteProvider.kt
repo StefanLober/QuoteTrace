@@ -1,6 +1,6 @@
-package de.stefanlober.stocktrace.quoteproviders
+package de.stefanlober.quotetrace.quoteproviders
 
-import de.stefanlober.stocktrace.data.StockQuote
+import de.stefanlober.quotetrace.data.StockQuote
 
 interface IQuoteProvider {
     fun getStockQuote(symbol: String) : StockQuote

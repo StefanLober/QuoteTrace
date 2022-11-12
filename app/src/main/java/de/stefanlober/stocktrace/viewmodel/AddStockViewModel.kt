@@ -1,13 +1,13 @@
-package de.stefanlober.stocktrace.viewmodel
+package de.stefanlober.quotetrace.viewmodel
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import de.stefanlober.stocktrace.dao.StockEntityDao
-import de.stefanlober.stocktrace.data.StockEntity
-import de.stefanlober.stocktrace.internal.EmptyEvent
-import de.stefanlober.stocktrace.internal.dispatcher.IoDispatcher
+import de.stefanlober.quotetrace.dao.StockEntityDao
+import de.stefanlober.quotetrace.data.StockEntity
+import de.stefanlober.quotetrace.internal.EmptyEvent
+import de.stefanlober.quotetrace.internal.dispatcher.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

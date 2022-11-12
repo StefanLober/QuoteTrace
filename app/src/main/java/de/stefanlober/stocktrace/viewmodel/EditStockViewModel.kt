@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace.viewmodel
+package de.stefanlober.quotetrace.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

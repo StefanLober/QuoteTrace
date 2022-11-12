@@ -1,4 +1,4 @@
-package de.stefanlober.stocktrace
+package de.stefanlober.quotetrace
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="action_bar_height">40dp</dimen>
+    <dimen name="action_bar_height">16dp</dimen>
     <dimen name="fab_margin">10dp</dimen>
     <dimen name="list_item_height">84dp</dimen>
     <dimen name="first_button_margin_top">-3dp</dimen>

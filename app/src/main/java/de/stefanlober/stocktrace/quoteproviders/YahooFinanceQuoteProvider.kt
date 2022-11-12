@@ -3,13 +3,11 @@ package de.stefanlober.quotetrace.quoteproviders
 import com.beust.klaxon.Klaxon
 import de.stefanlober.quotetrace.data.StockQuote
 import de.stefanlober.quotetrace.quoteproviders.json.YahooFinanceJson
-import java.io.InputStream
 import java.math.BigDecimal
 import java.net.URL
 import java.net.URLEncoder
 import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
-
 
 class YahooFinanceQuoteProvider @Inject constructor() : IQuoteProvider {
     private val baseUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
@@ -21,19 +19,20 @@ class YahooFinanceQuoteProvider @Inject constructor() : IQuoteProvider {
         connection.setRequestProperty("User-Agent", userAgent);
 
         if (connection.responseCode == 200) {
-            val inputStream: InputStream = connection.inputStream
-            val yahooFinanceJson= Klaxon().parse<YahooFinanceJson>(inputStream)
+            connection.inputStream.use { inputStream ->
+                val yahooFinanceJson= Klaxon().parse<YahooFinanceJson>(inputStream)
 
-            if (yahooFinanceJson != null) {
-                val result = yahooFinanceJson.quoteResponse.result[0]
-                val name = result.longName
-                val amount = BigDecimal(result.regularMarketPrice)
-                val currency = result.currency
+                if (yahooFinanceJson != null) {
+                    val result = yahooFinanceJson.quoteResponse.result[0]
+                    val name = result.longName
+                    val amount = BigDecimal(result.regularMarketPrice)
+                    val currency = result.currency
 
-                return StockQuote(name, amount, currency, true)
+                    return StockQuote(name, amount, currency, true)
+                }
+
+                throw Exception("Error: Empty quote result")
             }
-
-            throw Exception("Error: Empty quote result")
 
         } else
             throw Exception("Error: YahooFinanceQuoteProvider response code " + connection.responseCode)

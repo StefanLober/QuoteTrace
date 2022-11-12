@@ -1,13 +1,15 @@
 package de.stefanlober.quotetrace.quoteproviders
 
-import com.beust.klaxon.Klaxon
 import de.stefanlober.quotetrace.data.StockQuote
-import de.stefanlober.quotetrace.quoteproviders.json.YahooFinanceJson
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStream
 import java.math.BigDecimal
 import java.net.URL
 import java.net.URLEncoder
 import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
+
 
 class YahooFinanceQuoteProvider @Inject constructor() : IQuoteProvider {
     private val baseUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
@@ -20,21 +22,24 @@ class YahooFinanceQuoteProvider @Inject constructor() : IQuoteProvider {
 
         if (connection.responseCode == 200) {
             connection.inputStream.use { inputStream ->
-                val yahooFinanceJson= Klaxon().parse<YahooFinanceJson>(inputStream)
+                val jsonString = inputStreamToString(inputStream)
+                val rootObject = JSONObject(jsonString)
+                val quoteResponseObject = rootObject.getJSONObject("quoteResponse")
+                val resultObject = quoteResponseObject.getJSONArray("result").getJSONObject(0)
 
-                if (yahooFinanceJson != null) {
-                    val result = yahooFinanceJson.quoteResponse.result[0]
-                    val name = result.longName
-                    val amount = BigDecimal(result.regularMarketPrice)
-                    val currency = result.currency
-
-                    return StockQuote(name, amount, currency, true)
-                }
-
-                throw Exception("Error: Empty quote result")
+                return StockQuote(resultObject.getString("longName"), BigDecimal(resultObject.getDouble("regularMarketPrice")), resultObject.getString("currency"), true)
             }
 
         } else
             throw Exception("Error: YahooFinanceQuoteProvider response code " + connection.responseCode)
+    }
+
+    private fun inputStreamToString(inputStream: InputStream) : String {
+        var content: String
+        BufferedReader(inputStream.reader()).use { reader ->
+            content = reader.readText()
+        }
+
+        return content
     }
 }

@@ -40,8 +40,6 @@ ext {
     materialVersion = '1.6.1'
     roomVersion = '2.4.3'
 
-    klaxonVersion = '5.5'
-
     jUnitVersion = '4.13.2'
     androidXTestVersion = '1.4.0'
     mockitoVersion = '4.7.0'

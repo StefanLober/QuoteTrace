@@ -95,8 +95,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    implementation "com.beust:klaxon:$klaxonVersion"
-
 
 testImplementation "junit:junit:$jUnitVersion"
     testImplementation "androidx.test:core:$androidXTestVersion"

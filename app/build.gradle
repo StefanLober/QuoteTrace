@@ -7,7 +7,7 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
-        applicationId "de.stefanlober.stocktrace"
+        applicationId "de.stefanlober.quotetrace"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
@@ -95,7 +95,12 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: "$yahooFinanceVersion"
+    //implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: "$yahooFinanceVersion"
+    implementation(files("../../yahoofinance-api/target/YahooFinanceAPI-3.18.0-SNAPSHOT.jar"))
+
+    implementation "org.slf4j:slf4j-api:1.7.25"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.12.6.1"
+    implementation "org.slf4j:slf4j-simple:1.7.25"
 
 
 testImplementation "junit:junit:$jUnitVersion"

@@ -7,11 +7,11 @@
     <data>
         <variable
             name="stockData"
-            type="de.stefanlober.stocktrace.data.StockData" />
+            type="de.stefanlober.quotetrace.data.StockData" />
 
         <variable
             name="listener"
-            type="de.stefanlober.stocktrace.viewmodel.StockDataListener" />
+            type="de.stefanlober.quotetrace.viewmodel.StockDataListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

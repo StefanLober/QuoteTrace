@@ -12,7 +12,7 @@ import javax.net.ssl.HttpsURLConnection
 
 
 class YahooFinanceQuoteProvider @Inject constructor() : IQuoteProvider {
-    private val baseUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
+    private val baseUrl = "https://query1.finance.yahoo.com/v6/finance/quote?symbols="
     private val userAgent = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36"
 
     override fun getStockQuote(symbol: String): StockQuote {

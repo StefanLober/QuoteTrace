@@ -32,15 +32,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
         dataBinding true
     }
+    namespace 'de.stefanlober.quotetrace'
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
@@ -95,12 +97,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    //implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: "$yahooFinanceVersion"
-    implementation(files("../../yahoofinance-api/target/YahooFinanceAPI-3.18.0-SNAPSHOT.jar"))
-
-    implementation "org.slf4j:slf4j-api:1.7.25"
-    implementation "com.fasterxml.jackson.core:jackson-databind:2.12.6.1"
-    implementation "org.slf4j:slf4j-simple:1.7.25"
+    implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: "$yahooFinanceVersion"
 
 
 testImplementation "junit:junit:$jUnitVersion"

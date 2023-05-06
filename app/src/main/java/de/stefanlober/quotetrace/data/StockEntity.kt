@@ -17,9 +17,9 @@ data class StockEntity(
         return 0
     }
 
-    override fun writeToParcel(parcel: Parcel?, flags: Int) {
-        parcel?.writeLong(id)
-        parcel?.writeString(symbol)
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeLong(id)
+        parcel.writeString(symbol)
         /*parcel?.writeString(stockQuote.name)
         stockQuote.hundredthValue.let { parcel?.writeLong(it) }
         parcel?.writeString(stockQuote.currency)*/

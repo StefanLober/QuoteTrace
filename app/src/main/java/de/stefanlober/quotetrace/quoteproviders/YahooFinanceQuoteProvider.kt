@@ -1,11 +1,12 @@
-package de.stefanlober.quotetrace.dataproviders
+package de.stefanlober.quotetrace.quoteproviders
 
 import de.stefanlober.quotetrace.data.StockQuote
 import yahoofinance.Stock
 import yahoofinance.YahooFinance
 import javax.inject.Inject
 
-class YahooFinanceDataProvider @Inject constructor() : IDataProvider {
+
+class YahooFinanceQuoteProvider @Inject constructor() : IQuoteProvider {
     override fun getStockQuote(symbol: String): StockQuote {
         val stock: Stock = YahooFinance.get(symbol)
 

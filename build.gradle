@@ -1,16 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        kotlinVersion = "1.7.10"
+        kotlinVersion = '1.8.21'
         kotlinCoroutinesVersion = '1.6.4'
-        hiltVersion = '2.43.2'
+        hiltVersion = '2.45'
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:7.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
@@ -27,27 +27,28 @@ task clean(type: Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 24
-    targetSdkVersion = 32
-    compileSdkVersion = 32
+    targetSdkVersion = 33
+    compileSdkVersion = 33
 
     // App dependencies
-    appcompatVersion = '1.5.0'
-    activityKtxVersion = '1.5.1'
-    fragmentKtxVersion = '1.5.2'
-    ktxVersion = '2.5.1'
-    archVersion = "2.1.0"
-    lifecycleVersion = '2.5.1'
-    materialVersion = '1.6.1'
-    roomVersion = '2.4.3'
-    yahooFinanceVersion = '3.17.0'
+    appcompatVersion = '1.6.1'
+    activityKtxVersion = '1.7.1'
+    fragmentKtxVersion = '1.5.7'
+    ktxVersion = '2.5.3'
+    archVersion = '2.2.0'
+    lifecycleVersion = '2.6.1'
+    materialVersion = '1.8.0'
+    roomVersion = '2.5.1'
 
     jUnitVersion = '4.13.2'
-    androidXTestVersion = '1.4.0'
-    mockitoVersion = '4.7.0'
-    mockitoKotlinVersion = '4.0.0'
+    androidXTestVersion = '1.5.0'
+    mockitoVersion = '5.3.1'
+    mockitoKotlinVersion = '4.1.0'
     mockkVersion = '1.12.7'
 
-    androidXTestExtVersion = '1.1.3'
+    androidXTestExtVersion = '1.1.5'
 
     kotlinCoroutinesTestVersion = '1.6.1'
+
+    yahooFinanceVersion = '3.17.0'
 }

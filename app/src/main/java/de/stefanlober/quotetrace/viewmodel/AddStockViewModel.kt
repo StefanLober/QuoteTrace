@@ -24,7 +24,7 @@ class AddStockViewModel @Inject constructor(
 
     private val tag: String = StockListViewModel::class.java.simpleName
 
-    val symbol: MutableLiveData<String> = MutableLiveData<String>("IBM")
+    val symbol: MutableLiveData<String> = MutableLiveData<String>("")
 
     val onFinished = MutableLiveData<EmptyEvent>()
 

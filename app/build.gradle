@@ -31,14 +31,21 @@ android {
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
     buildFeatures {
         dataBinding true
     }
+
     namespace 'de.stefanlober.quotetrace'
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 kotlin {
@@ -97,8 +104,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-
-testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "junit:junit:$jUnitVersion"
     testImplementation "androidx.test:core:$androidXTestVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion"
@@ -108,4 +114,6 @@ testImplementation "junit:junit:$jUnitVersion"
 
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutinesTestVersion"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutinesTestVersion"
+
+    testImplementation 'org.json:json:20230227'
 }
